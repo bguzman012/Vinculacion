@@ -48,8 +48,6 @@ public class Registro implements Serializable {
 	@Column(name = "reg_accion")
 	@NotNull
 	private String accion;
-	
-	
 
 	/*
 	 * Relacion Registro con Empleado

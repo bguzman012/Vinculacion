@@ -95,7 +95,7 @@ public class RegistroDAO {
 		for (Registro registro : registros) {
 			registro.getCliente().getNombre();
 			registro.getCliente().getDireccionPrincipal();
-			registro.getCliente().getCelular();
+			registro.getCliente().getApellidos();
 			registro.getCliente().getLatitud();
 			registro.getCliente().getLongitud();
 			registro.getEmpleado().getNombre();

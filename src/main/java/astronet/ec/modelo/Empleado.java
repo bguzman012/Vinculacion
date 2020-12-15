@@ -1,5 +1,6 @@
 package astronet.ec.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,8 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Empleado")
-public class Empleado {
+public class Empleado implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name = "emp_id")
 	@GeneratedValue(generator = "secuenciaEmpleado")
@@ -28,27 +34,21 @@ public class Empleado {
 	private int id;
 
 	@Column(name = "emp_cedula")
-	@NotNull
 	private String cedula;
 
 	@Column(name = "emp_nombre")
-	@NotNull
 	private String nombre;
 
 	@Column(name = "emp_celular")
-	@NotNull
 	private String celular;
 
 	@Column(name = "emp_email")
-	@NotNull
 	private String email;
 
 	@Column(name = "emp_password")
-	@NotNull
 	private String password;
 
 	@Column(name = "emp_departamento")
-	@NotNull
 	private String departamento;
 
 	/*

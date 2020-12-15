@@ -1,12 +1,16 @@
 package astronet.ec.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,29 +35,22 @@ public class Servicio implements Serializable {
 	@SequenceGenerator(name = "secuenciaServicio", initialValue = 14)
 	@NotNull
 	private int id;
+
+	@Column(name = "ser_tipoServicio")
+	private String tipoServicio;
 	
 	@Column(name = "ser_numContrato")
-	@NotNull
 	private String numeroContrato;
 	
 	@Column(name = "ser_fechaContrato")
 	//@NotNull
 	private String fechaContrato;
 	
-	@Column(name = "ser_plan")
-	@NotNull
-	private String plan;
-	
-	@Column(name = "ser_ip")
-	@NotNull
-	private String ip;
-	
-	@Column(name = "ser_password")
-	@NotNull
-	private String password;
+	@Column(name = "ser_routerVendido")
+	//@NotNull
+	private String routerVendido;
 	
 	@Column(name = "ser_observaciones")
-	@NotNull
 	private String observaciones;
 
 	/*
@@ -64,6 +61,54 @@ public class Servicio implements Serializable {
 	@JsonIgnore
 	private Cliente cliente ;
 	
+	/*
+	 * Relacion Servicio con Plan
+	 */
+	@OneToOne
+	@JoinColumn(name="planservicio_fk")
+	@JsonIgnore
+	private Plan plan ;
+	
+	/*
+	 * Relacion Servicio con EquipoServicio
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "servicioEquipoServicio_fk")
+	@JsonIgnore
+	private List<EquipoServicio> equipoServicios;
+	
+	/*
+	 * Relacion Servicio con ServicioFibra
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "servicioServicioFibra_fk")
+	@JsonIgnore
+	private List<ServicioFibra> serviciosFibra;
+	
+	public List<ServicioFibra> getServiciosFibra() {
+		return serviciosFibra;
+	}
+
+	public void setServiciosFibra(List<ServicioFibra> serviciosFibra) {
+		this.serviciosFibra = serviciosFibra;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public List<EquipoServicio> getEquipoServicios() {
+		return equipoServicios;
+	}
+
+	public void setEquipoServicios(List<EquipoServicio> equipoServicios) {
+		this.equipoServicios = equipoServicios;
+	}
+
 	@Transient
 	private int idClienteTemp;
 
@@ -91,28 +136,20 @@ public class Servicio implements Serializable {
 		this.fechaContrato = fechaContrato;
 	}
 
-	public String getPlan() {
-		return plan;
+	public String getTipoServicio() {
+		return tipoServicio;
 	}
 
-	public void setPlan(String plan) {
-		this.plan = plan;
+	public void setTipoServicio(String tipoServicio) {
+		this.tipoServicio = tipoServicio;
 	}
 
-	public String getIp() {
-		return ip;
+	public String getRouterVendido() {
+		return routerVendido;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setRouterVendido(String routerVendido) {
+		this.routerVendido = routerVendido;
 	}
 
 	public String getObservaciones() {
@@ -139,16 +176,17 @@ public class Servicio implements Serializable {
 		this.idClienteTemp = idClienteTemp;
 	}
 
-	@Override
-	public String toString() {
-		return "Servicio [id=" + id + ", numeroContrato=" + numeroContrato + ", fechaContrato=" + fechaContrato
-				+ ", plan=" + plan + ", ip=" + ip + ", password=" + password + ", observaciones=" + observaciones + "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return "Servicio [id=" + id + ", tipoServicio=" + tipoServicio + ", numeroContrato=" + numeroContrato
+				+ ", fechaContrato=" + fechaContrato + ", routerVendido=" + routerVendido + ", observaciones="
+				+ observaciones + ", cliente=" + cliente + ", plan=" + plan + ", equipoServicios=" + equipoServicios
+				+ ", serviciosFibra=" + serviciosFibra + ", idClienteTemp=" + idClienteTemp + "]";
+	}
 	
 	
-
-	
-	
-
 }

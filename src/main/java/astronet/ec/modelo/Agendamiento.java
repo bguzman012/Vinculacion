@@ -6,12 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
+@Table(name = "Agendamiento")
 public class Agendamiento {
 	
 	@Id
@@ -21,24 +24,7 @@ public class Agendamiento {
 	private int id;
 	
 	@Column(name = "agd_fechaH")
-	@NotNull
 	private String fecha;
-	
-	@Column(name = "agd_observaciones")
-	@NotNull
-	private String observaciones;
-	
-	@Column(name = "agd_tecAsigna")
-	@NotNull
-	private String tecnicoAsigna;
-	
-	@Column(name = "agd_tecResponsable")
-	@NotNull
-	private String tecnicoResponsable;
-	
-	@Column(name = "agd_realizado")
-	@NotNull
-	private boolean realizado;
 	
 	@Transient
 	private int codigoRegistroTemp;
@@ -67,40 +53,6 @@ public class Agendamiento {
 		this.fecha = fecha;
 	}
 
-	public String getObservaciones() {
-		return observaciones;
-	}
-
-	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
-	}
-
-	
-
-	public String getTecnicoAsigna() {
-		return tecnicoAsigna;
-	}
-
-	public void setTecnicoAsigna(String tecnicoAsigna) {
-		this.tecnicoAsigna = tecnicoAsigna;
-	}
-
-	public String getTecnicoResponsable() {
-		return tecnicoResponsable;
-	}
-
-	public void setTecnicoResponsable(String tecnicoResponsable) {
-		this.tecnicoResponsable = tecnicoResponsable;
-	}
-
-	public int getCodigoRegistroTemp() {
-		return codigoRegistroTemp;
-	}
-
-	public void setCodigoRegistroTemp(int codigoRegistroTemp) {
-		this.codigoRegistroTemp = codigoRegistroTemp;
-	}
-
 	public Registro getRegistro() {
 		return registro;
 	}
@@ -108,24 +60,11 @@ public class Agendamiento {
 	public void setRegistro(Registro registro) {
 		this.registro = registro;
 	}
-	
-
-	public boolean isRealizado() {
-		return realizado;
-	}
-
-	public void setRealizado(boolean realizado) {
-		this.realizado = realizado;
-	}
 
 	@Override
 	public String toString() {
-		return "Agendamiento [id=" + id + ", fecha=" + fecha + ", observaciones=" + observaciones + ", tecnicoAsigna="
-				+ tecnicoAsigna + ", tecnicoResponsable=" + tecnicoResponsable + ", realizado=" + realizado + ", registro=" + registro + "]";
+		return "Agendamiento [id=" + id + ", fecha=" + fecha + ", codigoRegistroTemp=" + codigoRegistroTemp
+				+ ", registro=" + registro + "]";
 	}
-
-	
-	
-	
 
 }

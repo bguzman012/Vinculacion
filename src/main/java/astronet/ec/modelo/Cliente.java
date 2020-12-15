@@ -33,44 +33,36 @@ public class Cliente implements Serializable {
 	@Column(name = "cli_id")
 	@GeneratedValue(generator = "secuenciaCliente")
 	@SequenceGenerator(name = "secuenciaCliente", initialValue = 14)
-	@NotNull
 	private int id;
 	
 	@Column(name = "cli_cedula")
-	@NotNull
 	private String cedula;
 	
-	@Column(name = "cli_nombre")
-	@NotNull
+	@Column(name = "cli_nombres")
 	private String nombre;
 	
+
+	@Column(name = "cli_apellidos")
+	
+	private String apellidos;
+	
+	
 	@Column(name = "cli_email")
-	@NotNull
 	private String email;
 	
-	@Column(name = "cli_convencional")
-	private String convencional;
-	
-	@Column(name = "cli_celular")
-	private String celular;
-	
 	@Column(name = "cli_dirPrincipal")
-	@NotNull
 	private String direccionPrincipal;
 	
 	@Column(name = "cli_dirSecundaria")
 	private String direccionSecundaria;
 	
 	@Column(name = "cli_dirReferencia")
-	@NotNull
 	private String direccionReferencia;
 	
 	@Column(name = "cli_latitud")
-	@NotNull
 	private String latitud;
 	
 	@Column(name = "cli_longitud")
-	@NotNull
 	private String longitud;
 	
 	/*
@@ -78,7 +70,7 @@ public class Cliente implements Serializable {
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliservicio_fk")
-	private List<Servicio> servicio;
+	private List<Servicio> servicios;
 	
 	/*
 	 * Relacion Cliente con Registro
@@ -86,15 +78,16 @@ public class Cliente implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliregsitro_fk")
 	@JsonIgnore
-	private List<Registro> registro;
+	private List<Registro> registros;
 	
 	/*
-	 * Relacion cliente con antena
+	 * Relacion Cliente con Telefono
 	 */
-	@OneToOne
-	@JoinColumn(name="antcliente_fk")
-	//@JsonIgnore
-	private Antena antena ;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "clitel_fk")
+	@JsonIgnore
+	private List<Telefono> telefonos;
+	
 	
 	@Transient
 	private int codigoAntenaTemp;
@@ -131,20 +124,12 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
-	public String getConvencional() {
-		return convencional;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-	public void setConvencional(String convencional) {
-		this.convencional = convencional;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
 	public String getDireccionPrincipal() {
@@ -186,34 +171,33 @@ public class Cliente implements Serializable {
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
-
-	public List<Servicio> getServicio() {
-		return servicio;
-	}
-
-	public void setServicio(List<Servicio> servicio) {
-		this.servicio = servicio;
-	}
-
-	public List<Registro> getRegistro() {
-		return registro;
-	}
-
-	public void setRegistro(List<Registro> registro) {
-		this.registro = registro;
-	}
-
-	public Antena getAntena() {
-		return antena;
-	}
-
-	public void setAntena(Antena antena) {
-		this.antena = antena;
-	}
 	
-	
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
+	public List<Registro> getRegistros() {
+		return registros;
+	}
+
+	public void setRegistros(List<Registro> registros) {
+		this.registros = registros;
+	}
+
 	public int getCodigoAntenaTemp() {
 		return codigoAntenaTemp;
+	}
+
+	public List<Telefono> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<Telefono> telefonos) {
+		this.telefonos = telefonos;
 	}
 
 	public void setCodigoAntenaTemp(int codigoAntenaTemp) {
@@ -222,26 +206,13 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", email=" + email
-				+ ", convencional=" + convencional + ", celular=" + celular + ", direccionPrincipal="
-				+ direccionPrincipal + ", direccionSecundaria=" + direccionSecundaria + ", direccionReferencia="
-				+ direccionReferencia + ", latitud=" + latitud + ", longitud=" + longitud + ", servicio=" + servicio
-				+ ", antena=" + antena + "]";
-	}
-
-	public void addServicio(Servicio ser) {
-		if(servicio==null) {
-			servicio = new ArrayList<>();
-		}
-		this.servicio.add(ser);
+		return "Cliente [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", email=" + email + ", direccionPrincipal=" + direccionPrincipal + ", direccionSecundaria="
+				+ direccionSecundaria + ", direccionReferencia=" + direccionReferencia + ", latitud=" + latitud
+				+ ", longitud=" + longitud + ", servicios=" + servicios + ", registros=" + registros + ", telefonos="
+				+ telefonos + ", codigoAntenaTemp=" + codigoAntenaTemp + "]";
 	}
 	
-	public void addRegistro(Registro reg) {
-		if(registro==null) {
-			registro = new ArrayList<>();
-		}
-		this.registro.add(reg);
-	}
 	
 
 }
