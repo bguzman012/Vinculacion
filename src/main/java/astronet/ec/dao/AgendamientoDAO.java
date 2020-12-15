@@ -44,14 +44,6 @@ public class AgendamientoDAO {
 		Query q = em.createQuery(jpql, Agendamiento.class);
 		q.setParameter("busqueda", nombre);
 		List<Agendamiento> agendamientos =  q.getResultList();
-		for(Agendamiento agendamiento: agendamientos) {
-//			agendamiento.setCodigoRegistroTemp(0);
-//			agendamiento.setTecnicoAsigna(null);
-			for (int j = 0; j < agendamiento.getRegistro().getCliente().getServicio().size(); j++) {
-				agendamiento.getRegistro().getCliente().getServicio().get(j).getNumeroContrato();
-			}
-			
-		}
 		return agendamientos;
 	}
 	

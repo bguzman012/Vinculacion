@@ -45,13 +45,6 @@ public class RegistroDAO {
 		Query q = em.createQuery(jpql, Registro.class);
 		q.setParameter("a", id);
 		Registro reg = (Registro) q.getSingleResult();
-		
-		for (int i = 0; i < reg.getCliente().getServicio().size(); i++) {
-			reg.getCliente().getServicio().get(i).getIp();
-			reg.getCliente().getServicio().get(i).getPlan();
-			reg.getCliente().getServicio().get(i).getPassword();
-		}
-				
 		return reg;
 
 	}
@@ -63,15 +56,6 @@ public class RegistroDAO {
 		Query q = em.createQuery(jpql, Registro.class);
 		q.setParameter("a", estado);
 		List<Registro> registros = q.getResultList();
-		for (Registro registro : registros) {
-			registro.getCliente().getAntena().getId();
-			//registro.getAgendamiento().get(0).getFecha();
-			//registro.getAgendamiento().size();
-			registro.getCliente().getCedula();
-			registro.getEmpleado().getCelular();
-			registro.getCliente().getServicio().get(0).getIp();
-			//registro.getCliente().getServicio().size();
-		}
 		return registros;
 	}
 	
@@ -92,17 +76,7 @@ public class RegistroDAO {
 		String jpql = "SELECT reg FROM Registro reg ";
 		Query q = em.createQuery(jpql, Registro.class);
 		List<Registro> registros = q.getResultList();
-		for (Registro registro : registros) {
-			registro.getCliente().getNombre();
-			registro.getCliente().getDireccionPrincipal();
-			registro.getCliente().getApellidos();
-			registro.getCliente().getLatitud();
-			registro.getCliente().getLongitud();
-			registro.getEmpleado().getNombre();
-			for (int i = 0; i < registro.getAgendamiento().size(); i++) {
-				registro.getAgendamiento().get(i).getTecnicoResponsable();
-			}
-		}
+		
 		return registros;
 	}
 	

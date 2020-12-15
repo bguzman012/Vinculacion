@@ -47,28 +47,11 @@ public class ClienteON {
 	public Cliente getClienteCedula(String cedula) {
 		Cliente aux = clidao.buscarCedula(cedula);
 		registro.setIdClienteTemp(aux.getId());
-		System.out.println(aux.getCedula());
-		System.out.println(aux.getNombre());
-		for (int j = 0; j < aux.getServicio().size(); j++) {
-
-			System.out.println(aux.getServicio().get(j).getIp());
-			System.out.println(aux.getServicio().get(j).getPassword());
-			System.out.println(aux.getServicio().get(j).getPlan());
-		}
-
 		return aux;
 	}
 
 	public Cliente getClienteNombre(String nombre) {
 		Cliente aux = clidao.buscarNombre(nombre);
-		System.out.println(aux.getCedula());
-		System.out.println(aux.getNombre());
-		for (int j = 0; j < aux.getServicio().size(); j++) {
-			System.out.println(aux.getServicio().get(j).getIp());
-			System.out.println(aux.getServicio().get(j).getPassword());
-			System.out.println(aux.getServicio().get(j).getPlan());
-		}
-
 		return aux;
 	}
 	

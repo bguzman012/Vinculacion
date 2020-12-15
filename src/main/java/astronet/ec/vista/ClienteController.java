@@ -16,16 +16,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import astronet.ec.modelo.Agendamiento;
-import astronet.ec.modelo.Antena;
 import astronet.ec.modelo.Cliente;
 import astronet.ec.modelo.Empleado;
+import astronet.ec.modelo.Equipo;
 import astronet.ec.modelo.Instalacion;
 import astronet.ec.modelo.Registro;
 import astronet.ec.modelo.Servicio;
 import astronet.ec.on.AgendamientoON;
-import astronet.ec.on.AntenaON;
 import astronet.ec.on.ClienteON;
 import astronet.ec.on.EmpleadoON;
+import astronet.ec.on.EquipoOn;
 import astronet.ec.on.InstalacionON;
 import astronet.ec.on.RegistroON;
 import astronet.ec.on.ServicioON;
@@ -39,17 +39,16 @@ public class ClienteController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Cliente cliente = new Cliente();
 	private List<Cliente> listadoCliente;
-	private List<Antena> listadoAntena;
 	private List<Servicio> servicios;
 	private List<Registro> registros;
 	private List<Empleado> empleados;
 	private List<Instalacion> listaInstalaciones;
 	private Registro registro = new Registro();
 	private Empleado empleado = new Empleado();
-	private Antena antena = new Antena();
 	private Servicio servicio = new Servicio();
 	private Instalacion instalacion = new Instalacion();
 	private Agendamiento agendamiento = new Agendamiento();
+	private Equipo equipo = new Equipo();
 
 	/**
 	 * Declaraacion de variables
@@ -82,10 +81,7 @@ public class ClienteController implements Serializable {
 	 */
 	@Inject
 	private ClienteON clion;
-
-	@Inject
-	private AntenaON anton;
-
+	
 	@Inject
 	private RegistroON regon;
 
@@ -103,6 +99,9 @@ public class ClienteController implements Serializable {
 
 	@Inject
 	private AgendamientoON agon;
+	
+	@Inject 
+	private EquipoOn eqOn;
 
 	/**
 	 * Fin de la inyeccion
@@ -120,10 +119,10 @@ public class ClienteController implements Serializable {
 		servicio = new Servicio();
 		agendamiento = new Agendamiento();
 		empleados = empon.getListadoEmpleado();
-		listadoAntena = anton.getListadoAntena();
 		listadoCliente = clion.getListadoCliente();
 		registros = regon.getListadoRegistro();
 		listaInstalaciones = inson.getListadoInstalacion();
+		equipo = new Equipo();
 
 	}
 
@@ -131,27 +130,10 @@ public class ClienteController implements Serializable {
 	 * Metodo para la accion de editar los clientes
 	 */
 	public void loadData() {
-		System.out.println("codigo editar " + id);
 		if (id == 0)
 			return;
-		System.out.println("andres");
 		cliente = clion.getCliente(id);
-		System.out.println("prueba" + " " + clion.getCliente(id));
-		System.out.println("hola" + " ");
-		System.out.println(cliente.getId() + " " + cliente.getCedula());
 
-		for (int i = 0; i < cliente.getServicio().size(); i++) {
-			System.out.println("IP " + cliente.getServicio().get(i).getIp());
-			System.out.println("PLAN " + cliente.getServicio().get(i).getPlan());
-			cliente.getServicio().get(i).getId();
-			cliente.getServicio().get(i).getNumeroContrato();
-			cliente.getServicio().get(i).getFechaContrato();
-			cliente.getServicio().get(i).getObservaciones();
-			cliente.getServicio().get(i).getPassword();
-			cliente.getServicio().get(i).getIp();
-			cliente.getServicio().get(i).getPlan();
-
-		}
 
 	}
 
@@ -160,19 +142,9 @@ public class ClienteController implements Serializable {
 	 */
 	public void datosRegistro() {
 
-		System.out.println("codigo editar " + idR);
 		if (idR == 0)
 			return;
 		registro = regon.getRegistro(idR);
-		agendamiento.setCodigoRegistroTemp(registro.getId());
-		System.out.println("Nombre del cliente " + registro.getCliente().getNombre());
-		for (int i = 0; i < registro.getCliente().getServicio().size(); i++) {
-			System.out.println("Datos ip " + registro.getCliente().getServicio().get(i).getIp());
-			registro.getCliente().getServicio().get(i).getPassword();
-			registro.getCliente().getServicio().get(i).getPlan();
-
-		}
-
 	}
 
 	/*
@@ -242,14 +214,6 @@ public class ClienteController implements Serializable {
 		this.antenaC = antenaC;
 	}
 
-	public List<Antena> getListadoAntena() {
-		return listadoAntena;
-	}
-
-	public void setListadoAntena(List<Antena> listadoAntena) {
-		this.listadoAntena = listadoAntena;
-	}
-
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
@@ -296,14 +260,6 @@ public class ClienteController implements Serializable {
 
 	public void setRegistro(Registro registro) {
 		this.registro = registro;
-	}
-
-	public Antena getAntena() {
-		return antena;
-	}
-
-	public void setAntena(Antena antena) {
-		this.antena = antena;
 	}
 
 	public Instalacion getInstalacion() {
@@ -513,26 +469,27 @@ try {
 	/**
 	 * Metodo para la ejecuccion del sistema de simbolo (cmd)
 	 */
+	/*
 	public void cmd() {
 		try {
 			System.out.println("gol");
-			for (int i = 0; i < registro.getCliente().getServicio().size(); i++) {
-				IP = registro.getCliente().getServicio().get(i).getIp();
+			
+			 *for (int i = 0; i < registro.getCliente().getServicio().size(); i++) {
+				//IP = registro.getCliente().getServicio().get(i).getIp();
 				Runtime.getRuntime().exec("cmd.exe /k start ping " + IP + " -t");
 				fechaHora();
 				System.out.println("IP obtenida: " + IP);
 				System.out.println("hola2");
-			}
+			} 
+			 
+			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * Metodo para la ejecuccion de Winbox
-	 */
+	 
 	public void winbox() {
 
 		try {
@@ -550,6 +507,9 @@ try {
 		}
 
 	}
+	
+
+	 */
 
 	/**
 	 * Metodo para mostrar el listado de las antenas en el combox
@@ -558,7 +518,7 @@ try {
 	 */
 
 	public String listAntena() {
-		antenaC = "" + anton.getListadoAntena();
+		//antenaC = "" + anton.getListadoAntena();
 		return antenaC;
 	}
 
@@ -567,10 +527,10 @@ try {
 	 */
 	public void consultarAntena() {
 
-		Antena ant;
+		Equipo equipo;
 
 		try {
-
+			
 			ant = anton.consultarAntena(cliente.getCodigoAntenaTemp());
 			cliente.setAntena(ant);
 		} catch (Exception e) {
@@ -584,7 +544,7 @@ try {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Metod para guardar los registros
 	 * 

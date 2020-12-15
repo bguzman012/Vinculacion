@@ -66,20 +66,6 @@ public class ClienteDAO {
 		String jpql = "SELECT cliente FROM Cliente cliente ";
 		Query q = em.createQuery(jpql, Cliente.class);
 		List<Cliente> clientes = q.getResultList();
-//		for (Cliente cliente : clientes) {
-//			List<Servicio> servicios = cliente.getServicio();
-//			for (Servicio servicio : servicios) {
-//				servicio = null;
-//
-//			}
-//		}
-		for (Cliente cliente : clientes) {
-			cliente.getAntena().getId();
-			cliente.getServicio().get(0).getNumeroContrato();
-			cliente.getServicio().size();
-			//cliente.getRegistro().get(0).getAccion();
-
-		}
 		return clientes;
 	}
 
@@ -91,18 +77,6 @@ public class ClienteDAO {
 		Cliente clien = (Cliente) q.getSingleResult();
 		clien.getCedula();
 		clien.getNombre();
-		System.out.println(clien.getCedula());
-		System.out.println(clien.getNombre());
-		
-		for (int i = 0; i < clien.getServicio().size(); i++) {
-			System.out.println("Celular " );
-			System.out.println("Convencional " );
-			clien.getServicio().get(i).getIp();
-			clien.getServicio().get(i).getPassword();
-			clien.getServicio().get(i).getPlan();
-
-		}
-
 		return clien;
 	}
 	
@@ -111,20 +85,6 @@ public class ClienteDAO {
 		Query q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("nombre", nombre);
 		Cliente clien = (Cliente) q.getSingleResult();
-		clien.getCedula();
-		clien.getNombre();
-		System.out.println(clien.getCedula());
-		System.out.println(clien.getNombre());
-		
-		for (int i = 0; i < clien.getServicio().size(); i++) {
-			System.out.println("Celular " );
-			System.out.println("Convencional " );
-			clien.getServicio().get(i).getIp();
-			clien.getServicio().get(i).getPassword();
-			clien.getServicio().get(i).getPlan();
-
-		}
-
 		return clien;
 	}
 
