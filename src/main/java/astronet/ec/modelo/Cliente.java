@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cliente implements Serializable {
 	
 	/**
-	 * 
+	 * HolaMundo 
 	 */
 	private static final long serialVersionUID = 1L;
 

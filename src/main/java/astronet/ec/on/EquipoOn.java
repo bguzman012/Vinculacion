@@ -3,11 +3,8 @@ package astronet.ec.on;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import astronet.ec.dao.ClienteDAO;
 import astronet.ec.dao.EquipoDAO;
-import astronet.ec.modelo.Cliente;
 import astronet.ec.modelo.Equipo;
-import astronet.ec.modelo.Registro;
 
 @Stateless
 
