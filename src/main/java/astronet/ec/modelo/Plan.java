@@ -41,7 +41,7 @@ public class Plan implements Serializable{
 	private double capacidad;
 	
 	@Column(name = "plan_tipoServicio")
-	private double tipoServicio;
+	private String tipoServicio;
 	
 	/*
 	 * Relacion Cliente con Servicio
@@ -82,11 +82,14 @@ public class Plan implements Serializable{
 		this.capacidad = capacidad;
 	}
 
-	public double getTipoServicio() {
+	
+	
+
+	public String getTipoServicio() {
 		return tipoServicio;
 	}
 
-	public void setTipoServicio(double tipoServicio) {
+	public void setTipoServicio(String tipoServicio) {
 		this.tipoServicio = tipoServicio;
 	}
 
