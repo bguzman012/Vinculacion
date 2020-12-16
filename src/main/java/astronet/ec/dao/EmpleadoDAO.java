@@ -45,7 +45,7 @@ public class EmpleadoDAO {
 		Query q = em.createQuery(jpql, Empleado.class);
 		q.setParameter("a", id);
 		Empleado emp = (Empleado) q.getSingleResult();
-				
+		System.out.println("Se llamo a este read3");
 		return emp;
 
 	}

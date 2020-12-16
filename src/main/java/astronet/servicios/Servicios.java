@@ -17,14 +17,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import astronet.ec.modelo.Agendamiento;
-import astronet.ec.modelo.Antena;
+
 import astronet.ec.modelo.Cliente;
 import astronet.ec.modelo.Empleado;
 import astronet.ec.modelo.Instalacion;
 import astronet.ec.modelo.Registro;
 import astronet.ec.modelo.Servicio;
 import astronet.ec.on.AgendamientoON;
-import astronet.ec.on.AntenaON;
 import astronet.ec.on.ClienteON;
 import astronet.ec.on.EmpleadoON;
 import astronet.ec.on.InstalacionON;
@@ -52,8 +51,7 @@ public class Servicios {
 	@Inject
 	private ClienteON clion;
 	
-	@Inject
-	private AntenaON anton;
+
 
 	Registro registro;
 	/**
@@ -122,13 +120,16 @@ public class Servicios {
 	public List<Instalacion> listarInstalacion(@QueryParam("nombre") String nombre){
 		return inson.getInstalacion(nombre);
 	}
-	
-	@GET
+	/**
+	 * @GET
 	@Path("/listarAn")
 	@Produces("application/json")
 	public List<Antena> getAntena(){
 			return anton.getListadoAntena();
 		}
+	 * @return
+	 */
+	
 	
 	@GET
 	@Path("/buscarIdVis")
@@ -147,7 +148,11 @@ public class Servicios {
 			return inson.getListadoInstalacionId(id);
 		}
 	
-	
+	/**
+	 * 
+	 * @param cliente
+	 * @return
+	 
 	@PUT
 	@Path("/actualizar")
 	@Produces("application/json")
@@ -204,6 +209,7 @@ public class Servicios {
 			
 			
 		}
+	
 	
 	
 	@POST 
@@ -276,6 +282,7 @@ public class Servicios {
 			
 			
 		}
+		*/
 	
 	@PUT
 	@Path("/actualizarInstalacion")
