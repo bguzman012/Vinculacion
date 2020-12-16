@@ -53,7 +53,6 @@
 	</script>
 
 </h:head>
-
 <body>
 
 	<nav class="navbar navbar-default">
@@ -296,7 +295,48 @@
 
 					</div>
 
+					<!-- Aqui comienza la tabla -->
+				
+
+					<div id="main-container" class="cabecera">
 					
+					<h:dataTable id="Nombres" value="#{clienteController.cliente}"
+							var="cliente">
+
+							<h:column>
+								<f:facet name="header" data-field="nombres" data-sortable="true">Nombres</f:facet>
+											#{clienteController.cliente.nombre}
+												</h:column>
+
+							<h:column>
+								<f:facet name="header" data-field="direccion"
+									data-sortable="true">Direccion</f:facet>
+													<h:inputText class="cabecera" value="#{cliente.direccionPrincipal}" />
+													<br />
+					<h:inputText class="cabecera" value="#{cliente.direccionSecundaria}" />
+					<br />
+					<h:inputText class="cabecera" value="#{cliente.direccionReferencia}" />
+												</h:column>
+
+							<h:column>
+								<f:facet name="header" data-field="telefono"
+									data-sortable="true">Telefono</f:facet>
+											<h:inputText value="#{cliente.convencional}" />
+											<br />
+					<h:inputText value="#{cliente.celular}" />
+												</h:column>
+
+							<h:column>
+								<f:facet name="header" data-field="direccionIp"
+									data-sortable="true">Direccion IP</f:facet>
+											#{cliente.servicio.get(i).ip}
+												</h:column>
+
+						</h:dataTable>
+						
+
+					</div>
+					<!-- Aqui termina la tabla -->
 					
 					<div class="btnsIngre_Agen">
 					<h:commandButton class="btn btn-primary btnIn" action="#{clienteController.cargarDatosCallCenter()}" value="Actualizar" />
@@ -349,6 +389,4 @@
 	</h:form>
 
 </body>
-
-
 </html>
