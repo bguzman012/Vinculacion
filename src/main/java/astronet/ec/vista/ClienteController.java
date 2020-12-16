@@ -389,7 +389,8 @@ public class ClienteController implements Serializable {
 	 */
 	public String buscarCedula() {
 try {
-	if (validadorDeCedula(cliente.getCedula())) {
+	if (cliente.getCedula()!=null) {
+		
 		cliente = clion.getClienteCedula(cliente.getCedula());
 		registro.setIdClienteTemp(cliente.getId());
 		fechaHora();
