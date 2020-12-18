@@ -412,6 +412,7 @@ public class ClienteController implements Serializable {
 				setTelefonos(telefonos2);
 				System.out.println("-----CHAVOOOO----");
 				registro.setIdClienteTemp(cliente.getId());
+				cliente.setTelefonos(telefonos2);
 				fechaHora();
 				datoR();
 				
