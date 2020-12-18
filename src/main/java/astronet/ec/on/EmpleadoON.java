@@ -13,6 +13,7 @@ import astronet.ec.modelo.Empleado;
 public class EmpleadoON {
 	
 	@Inject
+	//kk
 	private EmpleadoDAO empdao;
 	
 	public void guardar(Empleado emp) {

@@ -45,9 +45,11 @@ public class EmpleadoController {
 		System.out.println("codigo editar " + id);
 		if (id == 0)
 			return;
-		
+		System.out.println("andres");
 		empleado = empon.getEmpleado(id);
-		
+		System.out.println("prueba" + " " + empon.getEmpleado(id));
+		System.out.println("hola" + " ");
+		System.out.println(empleado.getId() + " " + empleado.getCedula());
 
 		
 

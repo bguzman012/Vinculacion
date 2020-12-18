@@ -2,7 +2,6 @@ package astronet.ec.vista;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -23,7 +22,6 @@ import astronet.ec.modelo.Equipo;
 import astronet.ec.modelo.Instalacion;
 import astronet.ec.modelo.Registro;
 import astronet.ec.modelo.Servicio;
-import astronet.ec.modelo.Telefono;
 import astronet.ec.on.AgendamientoON;
 import astronet.ec.on.ClienteON;
 import astronet.ec.on.EmpleadoON;
@@ -31,7 +29,6 @@ import astronet.ec.on.EquipoOn;
 import astronet.ec.on.InstalacionON;
 import astronet.ec.on.RegistroON;
 import astronet.ec.on.ServicioON;
-import astronet.ec.on.TelefonoON;
 import astronet.ec.vista.InstalacionController.ServicioFA;
 
 @ManagedBean
@@ -53,7 +50,6 @@ public class ClienteController implements Serializable {
 	private Agendamiento agendamiento = new Agendamiento();
 	private Equipo equipo = new Equipo();
 
-	private List<Telefono> telefonos;
 	/**
 	 * Declaraacion de variables
 	 */
@@ -106,9 +102,6 @@ public class ClienteController implements Serializable {
 	
 	@Inject 
 	private EquipoOn eqOn;
-	
-	@Inject 
-	private TelefonoON telOn;
 
 	/**
 	 * Fin de la inyeccion
@@ -129,7 +122,6 @@ public class ClienteController implements Serializable {
 		listadoCliente = clion.getListadoCliente();
 		registros = regon.getListadoRegistro();
 		listaInstalaciones = inson.getListadoInstalacion();
-		telefonos = new ArrayList<Telefono>();
 		equipo = new Equipo();
 
 	}
@@ -395,16 +387,8 @@ public class ClienteController implements Serializable {
 	 * 
 	 * @return
 	 */
-
-
-	
-	
-
-	
-	
-	
-	
 	public String buscarCedula() {
+<<<<<<< HEAD
 		System.out.println("esta es la cedula hpta "+ this.cedula);
 		try {
 			if (this.cedula!=null) {
@@ -441,9 +425,10 @@ public class ClienteController implements Serializable {
 
 	
 	public String buscarCedula1() {
+=======
+>>>>>>> 07d48c964056602b9cbfc84e8dfd8e3e81999a41
 try {
-	if (cliente.getCedula()!=null) {
-		
+	if (validadorDeCedula(cliente.getCedula())) {
 		cliente = clion.getClienteCedula(cliente.getCedula());
 		registro.setIdClienteTemp(cliente.getId());
 		fechaHora();
@@ -456,24 +441,10 @@ try {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
 
 }
-		System.out.println("veniii"+ cliente.getCedula());
-		return cliente.getCedula();
+		
+		return null;
 
 	}
-	
-	
-	public List<Telefono> getTelefonos1(Cliente cliente){
-		
-		return telefonos;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 	/**
 	 * Metodo para la busqueda del cliente por el nombre
@@ -592,7 +563,8 @@ try {
 
 	/**
 	 * Metodo de consulta de la antena
-	 * public void consultarAntena() {
+	 */
+	public void consultarAntena() {
 
 		Equipo equipo;
 
@@ -602,15 +574,15 @@ try {
 			cliente.setAntena(ant);
 		} catch (Exception e) {
 			cliente.setAntena(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtAntena", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-	
-	
-	
 	
 	/**
 	 * Metod para guardar los registros
@@ -651,7 +623,6 @@ try {
 			return carValue;
 		}
 	}
-	
 
 	public problema[] listaProblema;
 
@@ -801,21 +772,24 @@ try {
 
 	/**
 	 * Metodo de conltar Registro para el agendamiento
-	 * public void consultarRegistro() {
+	 */
+
+	public void consultarRegistro() {
 		Registro reg;
 		try {
 			reg = regon.consultarRegistro(agendamiento.getCodigoRegistroTemp());
 			agendamiento.setRegistro(reg);
 		} catch (Exception e) {
 			agendamiento.setRegistro(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtRegistro1", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-
-	
 
 	
 
@@ -985,8 +959,6 @@ try {
 
 		return servicioLista;
 	}
-	
-
 	
 	
 
