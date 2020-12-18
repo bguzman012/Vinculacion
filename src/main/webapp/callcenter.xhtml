@@ -62,7 +62,26 @@
 			<a class="navbar-brand" href="callcenter.xhtml"><img
 				src="resources/assets/img/logo.png" /></a>
 		</div>
-		
+		<ul class="nav navbar-nav">
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Call Center <span
+					class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="registro.xhtml">Registros</a></li>
+					<li><a href="listadoInstalaciones.xhtml">Instalaciones</a></li>
+					<li><h:form><p:commandButton class="nuevaInstalacion" onclick="$('#myModal').modal('show')" 
+				onblur="#{clienteController.datoI()}" value="N Instalacion"></p:commandButton></h:form></li>
+
+				</ul></li>
+
+			<li class="dropdown" ><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#" onclick="acceso()" >Clientes<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="clientes1.xhtml" id="boton">Clientes</a></li>
+					<li><a href="registrarEmpleado.xhtml" id="boton1">Empleado</a></li>
+				</ul></li>
+
+		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a> #{login.empleado.nombre}</a></li>
@@ -201,7 +220,7 @@
 						<div class="form-group col-sm-3">
 							<div class="input-group marginBuscar">
 								<h:inputText class="form-control"
-									value="#{clienteController.cedula}"
+									value="#{clienteController.cliente.cedula}"
 									a:placeholder="Cedula del Cliente" name="search" />
 								<div class="input-group-btn" id="txtCedula">
 									<h:commandButton render="Nombres"
@@ -289,8 +308,13 @@
 								<f:facet name="header" data-field="nombres" data-sortable="true">Nombres</f:facet>
 											#{clienteController.cliente.nombre}
 												</h:column>
+												<h:column>
+								<f:facet name="header" data-field="nombres" data-sortable="true">Apellidos</f:facet>
+											#{clienteController.cliente.apellidos}
+												</h:column>
 
 							<h:column>
+							
 								<f:facet name="header" data-field="direccion"
 									data-sortable="true">Direccion</f:facet>
 													<h:inputText class="cabecera" value="#{cliente.direccionPrincipal}" />
@@ -300,19 +324,15 @@
 					<h:inputText class="cabecera" value="#{cliente.direccionReferencia}" />
 												</h:column>
 												<h:column>
+								<f:facet name="header" data-field="telefono"
+									data-sortable="true">Telefono</f:facet>
+											<h:inputText value="000telfono" />
+											<br />
+											</h:column>
+											<!-- 
+					<h:inputText value="#{cliente.celular}" />
 												
-												<ul>
-    <ui:repeat value="#{clienteController.telefonos}" var=telefono"">
-        <li>
-            <h:link value="#{telefono.getTipoTelefono()}" outcome="telefono">
-                <f:param name="id" value="#{telefono.tipoTelefono}" />
-            </h:link>
-        </li>
-    </ui:repeat>
-</ul>
-  
-												</h:column>
-<!-- 
+
 							<h:column>
 								<f:facet name="header" data-field="telefono"
 									data-sortable="true">Telefono</f:facet>

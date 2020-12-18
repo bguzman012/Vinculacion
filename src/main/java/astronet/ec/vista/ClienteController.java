@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,6 +16,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
+import org.hibernate.validator.internal.util.logging.Log;
 
 import astronet.ec.modelo.Agendamiento;
 import astronet.ec.modelo.Cliente;
@@ -479,10 +482,21 @@ try {
 	 * Metodo para la busqueda del cliente por el nombre
 	 */
 	public void buscarNombre() {
+		System.out.println("ha llegado a buscar un cliente");
 		cliente = clion.getClienteNombre(cliente.getNombre());
 		registro.setIdClienteTemp(cliente.getId());
-		fechaHora();
+		listadoCliente = clion.getListadoCliente();
+		System.out.println("listado"+ listadoCliente);
 		datoR();
+	}
+	
+	/**
+	 * metodo para listar todos los clientes para autocompletado
+	 */
+	public String listarClientes() {
+		listadoCliente = clion.getListadoCliente();
+		System.out.println("estos son los clientes" + listadoCliente);
+		return listarClientes();
 	}
 
 	/**
@@ -841,6 +855,7 @@ try {
 				+ String.valueOf(hora) + ":" + String.valueOf(minuto) + ":" + String.valueOf(segundo);
 		registro.setFechaHora(fec);
 		agendamiento.setFecha(fec);
+		System.out.println(fec);
 
 	}
 
