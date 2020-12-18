@@ -154,11 +154,14 @@ public class TelefonoController implements Serializable {
 		return cliente;
 
 	}
-	public List<Telefono> getTelefonos(){
-		System.out.println("Cliente a buscar "+ cedula);
-		telefonos=clion.getTelefonos(cedula);
+	/**
+	 * public List<Telefono> getTelefonos(){
+	 * System.out.println("Cliente a buscar "+ cedula);
+		telefonos=clion.
 		return telefonos;
 	}
+	 */
+		
 
 
 

@@ -300,17 +300,14 @@
 					<h:inputText class="cabecera" value="#{cliente.direccionReferencia}" />
 												</h:column>
 												<h:column>
-												
-												<ul>
-    <ui:repeat value="#{clienteController.telefonos}" var=telefono"">
-        <li>
-            <h:link value="#{telefono.getTipoTelefono()}" outcome="telefono">
-                <f:param name="id" value="#{telefono.tipoTelefono}" />
-            </h:link>
-        </li>
-    </ui:repeat>
-</ul>
-  
+			
+						  <label for="sel2" class="etiquetas">Telfonos:</label>     
+						<h:selectOneMenu class="form-control" id="sel2">
+							<f:selectItems value="#{cliente.telefonos}" var="pro1"
+								itemLabel="#{pro1.tipoTelefono}" itemValue="#{pro1.tipoTelefono}" />
+						</h:selectOneMenu>
+					
+					
 												</h:column>
 <!-- 
 							<h:column>
