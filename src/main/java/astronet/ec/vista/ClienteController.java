@@ -524,7 +524,8 @@ try {
 
 	/**
 	 * Metodo de consulta de la antena
-	 * public void consultarAntena() {
+	 */
+	public void consultarAntena() {
 
 		Equipo equipo;
 
@@ -534,15 +535,15 @@ try {
 			cliente.setAntena(ant);
 		} catch (Exception e) {
 			cliente.setAntena(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtAntena", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-	
-	
-	
 	
 	/**
 	 * Metod para guardar los registros
@@ -732,21 +733,24 @@ try {
 
 	/**
 	 * Metodo de conltar Registro para el agendamiento
-	 * public void consultarRegistro() {
+	 */
+
+	public void consultarRegistro() {
 		Registro reg;
 		try {
 			reg = regon.consultarRegistro(agendamiento.getCodigoRegistroTemp());
 			agendamiento.setRegistro(reg);
 		} catch (Exception e) {
 			agendamiento.setRegistro(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtRegistro1", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-
-	
 
 	
 
