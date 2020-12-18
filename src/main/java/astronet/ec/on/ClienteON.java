@@ -9,6 +9,7 @@ import astronet.ec.dao.ClienteDAO;
 import astronet.ec.modelo.Cliente;
 import astronet.ec.modelo.Registro;
 import astronet.ec.modelo.Servicio;
+import astronet.ec.modelo.Telefono;
 
 @Stateless
 public class ClienteON {
@@ -54,6 +55,7 @@ public class ClienteON {
 		Cliente aux = clidao.buscarNombre(nombre);
 		return aux;
 	}
+	
 	
 	public void dato() {
 		
