@@ -35,6 +35,7 @@ public class ClienteON {
 	
 	
 	public List<Cliente> getListadoCliente() {
+		System.out.println("Datos de todos los clientes");
 		return clidao.getCliente();
 	}
 

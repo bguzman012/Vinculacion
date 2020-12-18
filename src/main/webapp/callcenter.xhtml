@@ -308,8 +308,13 @@
 								<f:facet name="header" data-field="nombres" data-sortable="true">Nombres</f:facet>
 											#{clienteController.cliente.nombre}
 												</h:column>
+												<h:column>
+								<f:facet name="header" data-field="nombres" data-sortable="true">Apellidos</f:facet>
+											#{clienteController.cliente.apellidos}
+												</h:column>
 
 							<h:column>
+							
 								<f:facet name="header" data-field="direccion"
 									data-sortable="true">Direccion</f:facet>
 													<h:inputText class="cabecera" value="#{cliente.direccionPrincipal}" />
@@ -323,9 +328,11 @@
 									data-sortable="true">Telefono</f:facet>
 											<h:inputText value="000telfono" />
 											<br />
+											</h:column>
+											<!-- 
 					<h:inputText value="#{cliente.celular}" />
-												</h:column>
-<!-- 
+												
+
 							<h:column>
 								<f:facet name="header" data-field="telefono"
 									data-sortable="true">Telefono</f:facet>
