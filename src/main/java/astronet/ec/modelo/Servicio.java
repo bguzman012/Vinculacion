@@ -180,7 +180,13 @@ public class Servicio implements Serializable {
 		return serialVersionUID;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Servicio [id=" + id + ", tipoServicio=" + tipoServicio + ", numeroContrato=" + numeroContrato
+				+ ", fechaContrato=" + fechaContrato + ", routerVendido=" + routerVendido + ", observaciones="
+				+ observaciones + ", cliente=" + cliente + ", plan=" + plan + ", equipoServicios=" + equipoServicios
+				+ ", serviciosFibra=" + serviciosFibra + ", idClienteTemp=" + idClienteTemp + "]";
+	}
 	
 	
 }
