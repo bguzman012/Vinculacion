@@ -341,10 +341,19 @@ public class ClienteController implements Serializable {
 	public void setEmpCon(EmpleadoController empCon) {
 		this.empCon = empCon;
 	}
+	
 
 	/*
 	 * Hasta aqui llega la creacion de los getters and setters
 	 */
+
+	public List<Telefono> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<Telefono> telefonos) {
+		this.telefonos = telefonos;
+	}
 
 	/**
 	 * Metodo para dirigirnos a la pagina editarClientes
@@ -393,20 +402,19 @@ public class ClienteController implements Serializable {
 		try {
 			if (this.cedula!=null) {
 				
-				Cliente cli = clion.getClienteCedula(this.cedula);
-				System.out.println("cliente cedula --> "+ cli.getCedula());
-				List<Telefono>telefonos2=telOn.getTelefonos(cli);
+				cliente = clion.getClienteCedula(this.cedula);
+				System.out.println("cliente cedula --> "+ cliente.getCedula());
+				List<Telefono>telefonos2=telOn.getTelefonos(cliente);
 				for (Telefono telefono : telefonos2) {
 					System.out.println(telefono.getTipoTelefono());
 					System.out.println("-----kiko----");
 				}
-				this.telefonos=telefonos2;
+				setTelefonos(telefonos2);
 				System.out.println("-----CHAVOOOO----");
-				registro.setIdClienteTemp(cli.getId());
-				//fechaHora();
-				//datoR();
+				registro.setIdClienteTemp(cliente.getId());
+				fechaHora();
+				datoR();
 				
-
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Correctas"));
 
 			}
