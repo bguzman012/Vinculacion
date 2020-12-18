@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,7 +41,7 @@ public class Telefono implements Serializable {
 	/*
 	 * Relacion Telefono con Cliente
 	 */
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="cliTel_fk")
 	@JsonIgnore
 	private Cliente cliente;
@@ -77,30 +76,6 @@ public class Telefono implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Telefono other = (Telefono) obj;
-		if (id != other.id)
-			return false;
-		return true;
 	}
 
 	@Override
