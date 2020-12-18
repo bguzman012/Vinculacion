@@ -53,7 +53,6 @@
 	</script>
 
 </h:head>
-
 <body>
 
 	<nav class="navbar navbar-default">
@@ -296,7 +295,7 @@
 
 					</div>
 
-					
+					<!-- Aqui comienza la tabla -->
 				
 
 					<div id="main-container" class="cabecera">
@@ -323,7 +322,9 @@
 					<br />
 					<h:inputText class="cabecera" value="#{cliente.direccionReferencia}" />
 												</h:column>
+<<<<<<< HEAD
 												<h:column>
+<<<<<<< HEAD
 								<f:facet name="header" data-field="telefono"
 									data-sortable="true">Telefono</f:facet>
 											<h:inputText value="000telfono" />
@@ -333,6 +334,24 @@
 					<h:inputText value="#{cliente.celular}" />
 												
 
+=======
+												
+												<ul>
+    <ui:repeat value="#{clienteController.telefonos}" var=telefono"">
+        <li>
+            <h:link value="#{telefono.getTipoTelefono()}" outcome="telefono">
+                <f:param name="id" value="#{telefono.tipoTelefono}" />
+            </h:link>
+        </li>
+    </ui:repeat>
+</ul>
+  
+												</h:column>
+<!-- 
+=======
+
+>>>>>>> 07d48c964056602b9cbfc84e8dfd8e3e81999a41
+>>>>>>> branch 'master' of https://github.com/bguzman012/Vinculacion.git
 							<h:column>
 								<f:facet name="header" data-field="telefono"
 									data-sortable="true">Telefono</f:facet>
@@ -340,20 +359,18 @@
 											<br />
 					<h:inputText value="#{cliente.celular}" />
 												</h:column>
-												
 
 							<h:column>
 								<f:facet name="header" data-field="direccionIp"
 									data-sortable="true">Direccion IP</f:facet>
 											#{cliente.servicio.get(i).ip}
 												</h:column>
-												 -->
 
 						</h:dataTable>
 						
 
 					</div>
-					<!--  Aqui termina la tabla -->
+					<!-- Aqui termina la tabla -->
 					
 					<div class="btnsIngre_Agen">
 					<h:commandButton class="btn btn-primary btnIn" action="#{clienteController.cargarDatosCallCenter()}" value="Actualizar" />
@@ -406,6 +423,4 @@
 	</h:form>
 
 </body>
-
-
 </html>

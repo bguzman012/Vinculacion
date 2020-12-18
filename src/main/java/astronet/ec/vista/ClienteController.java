@@ -391,9 +391,47 @@ public class ClienteController implements Serializable {
 	 * @return
 	 */
 	public String buscarCedula() {
+<<<<<<< HEAD
+		System.out.println("esta es la cedula hpta "+ this.cedula);
+		try {
+			if (this.cedula!=null) {
+				
+				Cliente cli = clion.getClienteCedula(this.cedula);
+				System.out.println("cliente cedula --> "+ cli.getCedula());
+				List<Telefono>telefonos2=telOn.getTelefonos(cli);
+				for (Telefono telefono : telefonos2) {
+					System.out.println(telefono.getTipoTelefono());
+					System.out.println("-----kiko----");
+				}
+				this.telefonos=telefonos2;
+				System.out.println("-----CHAVOOOO----");
+				registro.setIdClienteTemp(cli.getId());
+				//fechaHora();
+				//datoR();
+				
+
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Correctas"));
+
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
+
+		}
+				System.out.println("veniii"+ cliente.getCedula());
+				return null;
+
+			}
+	
+	
+	
+
+	
+	public String buscarCedula1() {
+=======
+>>>>>>> 07d48c964056602b9cbfc84e8dfd8e3e81999a41
 try {
-	if (cliente.getCedula()!=null) {
-		
+	if (validadorDeCedula(cliente.getCedula())) {
 		cliente = clion.getClienteCedula(cliente.getCedula());
 		registro.setIdClienteTemp(cliente.getId());
 		fechaHora();
@@ -539,7 +577,8 @@ try {
 
 	/**
 	 * Metodo de consulta de la antena
-	 * public void consultarAntena() {
+	 */
+	public void consultarAntena() {
 
 		Equipo equipo;
 
@@ -549,15 +588,15 @@ try {
 			cliente.setAntena(ant);
 		} catch (Exception e) {
 			cliente.setAntena(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtAntena", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-	
-	
-	
 	
 	/**
 	 * Metod para guardar los registros
@@ -747,21 +786,24 @@ try {
 
 	/**
 	 * Metodo de conltar Registro para el agendamiento
-	 * public void consultarRegistro() {
+	 */
+
+	public void consultarRegistro() {
 		Registro reg;
 		try {
 			reg = regon.consultarRegistro(agendamiento.getCodigoRegistroTemp());
 			agendamiento.setRegistro(reg);
 		} catch (Exception e) {
 			agendamiento.setRegistro(null);
-			
+			// TODO Auto-generated catch block
+			/*
+			 * FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+			 * e.getMessage(), "Error"); fc.addMessage("txtRegistro1", msg);
+			 */
 
 			e.printStackTrace();
 		}
 	}
-	 */
-
-	
 
 	
 
