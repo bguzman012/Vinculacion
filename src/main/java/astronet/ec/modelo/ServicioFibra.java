@@ -26,6 +26,7 @@ public class ServicioFibra  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name = "fibra_id")
 	@GeneratedValue(generator = "secuenciaFibra")

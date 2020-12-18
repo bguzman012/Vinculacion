@@ -33,7 +33,6 @@ public class RegistroON {
 	public Registro getRegistro(int id) {
 		Registro aux = regdao.read3(id);
 		System.out.println("Prueba: " + " " + regdao.read3(id));
-		System.out.println("Se llamo al registro");
 		return aux;
 	}
 	
@@ -64,7 +63,7 @@ public class RegistroON {
 	
 public Empleado consultarEmpleado(int codigoEmpleado) throws Exception {
 		
-		//holaaaaaaas
+		
 		Empleado emp= empdao.read(codigoEmpleado);
 		if(emp==null)
 			throw new Exception("Empleado no existe");
