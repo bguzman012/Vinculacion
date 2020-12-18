@@ -6,9 +6,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import astronet.ec.modelo.Cliente;
 import astronet.ec.modelo.Servicio;
+import astronet.ec.modelo.Telefono;
 
 @Stateless
 public class ClienteDAO {
@@ -68,6 +72,26 @@ public class ClienteDAO {
 		List<Cliente> clientes = q.getResultList();
 		return clientes;
 	}
+	
+	public List<Telefono> getTelefonos(String cedula) {
+		System.out.println("CLIENTE BUSCADO -----> "+ cedula);
+		Cliente cli= new Cliente();
+		cli=buscarCedula(cedula);
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<Telefono> criteriaQuery = criteriaBuilder.createQuery(Telefono.class);
+		// Se establece la clausula FROM
+		Root<Telefono> root = criteriaQuery.from(Telefono.class);
+		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("cliente"), cli)); // criteriaQuery.multiselect(root.get(atr))
+		// // Se configuran los predicados,
+		// combinados por AND
+		System.out.println(em.createQuery(criteriaQuery).getResultList());
+		
+		return em.createQuery(criteriaQuery).getResultList();
+		
+	}
+	
+
+	
 
 	
 	public Cliente buscarCedula(String cedula) {
