@@ -416,14 +416,13 @@ public class ClienteController implements Serializable {
 					System.out.println(telefono.getTipoTelefono());
 					System.out.println("-----kiko----");
 				}
+				this.telefonos=telefonos2;
 				System.out.println("-----CHAVOOOO----");
-				//registro.setIdClienteTemp(cliente.getId());
+				registro.setIdClienteTemp(cli.getId());
 				//fechaHora();
 				//datoR();
 				
-				 
-				
-				
+
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Correctas"));
 
 			}

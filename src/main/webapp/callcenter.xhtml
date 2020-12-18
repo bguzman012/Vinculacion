@@ -301,6 +301,15 @@
 												</h:column>
 												<h:column>
 												
+												<ul>
+    <ui:repeat value="#{clienteController.telefonos}" var=telefono"">
+        <li>
+            <h:link value="#{telefono.getTipoTelefono()}" outcome="telefono">
+                <f:param name="id" value="#{telefono.tipoTelefono}" />
+            </h:link>
+        </li>
+    </ui:repeat>
+</ul>
   
 												</h:column>
 <!-- 
